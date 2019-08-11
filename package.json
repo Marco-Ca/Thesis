@@ -1,0 +1,26 @@
+{
+  "name": "THESIS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm install && cd client && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Marco",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cookie-session": "^1.3.3",
+    "create-react-app": "^2.1.8",
+    "express": "^4.16.4",
+    "pg": "^7.10.0",
+    "react-flags-select": "^1.1.10"
+  }
+}
