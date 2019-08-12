@@ -17,22 +17,11 @@ code {
   display: none
 }
 
-img {
-  height: 14px;
-  width: 14px;
-}
 
-.country {
-  width: 200px;
-  border: 1px solid black;
-  max-height: 200px;
-}
-
-.flag-options {
-  max-height: 200px;
-  overflow: scroll;
-}
 
 .arrow-down {
-  margin-left: 70px;
+	/* margin-left: 70px; */
+	display:none;
+	position: absolute;
+	right: 0;
 }
