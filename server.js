@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
 const pg = require('pg');
 const db = require('./db')
+const requestIp = require('request-ip');
 
 app.use(cookieSession({
   secret: `secret is secret`,
@@ -17,6 +18,21 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
   console.log(`HELLO`)
   res.send(`HELLO WORLD`)
+})
+
+app.post('/addParticipant', (req, res) => {
+	const clientIp = requestIp.getClientIp(req); 
+	db.addParticipant(req.body.is_admin, req.body.ip, req.body.name, req.body.selectedOption.value, req.body.is_it, req.body.is_positive, req.body.password)
+		.then(function(result) {
+			console.log(`result is ${result}`)
+		})
+		.then(function () {
+      res.json({
+        success: true
+      });
+    }).catch(function (err) {
+      console.log(err);
+    });
 })
 
 app.post('/register', (req, res) => {

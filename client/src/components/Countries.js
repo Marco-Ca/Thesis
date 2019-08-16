@@ -13,7 +13,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import {countries} from './countries-list.js';
 
 
-console.log(countries)
+
 
 
 const suggestions = countries.map(suggestion => ({
