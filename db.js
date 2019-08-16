@@ -19,6 +19,12 @@ function addParticipant(admin, ip, name, country, is_it, is_positive) {
   );
 }
 
+function getParticipant(ip) {
+	return pg_client.query(
+		`SELECT * FROM PARTICIPANT WHERE `
+	)
+}
+
 module.exports = {
   addParticipant
 
