@@ -3,8 +3,6 @@ import React, {
 } from 'react';
 import Navigation from './Navigation'
 import Countries from './Countries'
-// import axios from 'axios';
-// import ReactFlagsSelect from 'react-flags-select';
 import {
 	Button,
 	Grid
@@ -26,11 +24,13 @@ class Home extends Component {
 			selectedOption: null,
 			is_it: false,
 			is_positive: false,
+			is_new: true,
 		}
 		this.setNewState = this.setNewState.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleOption = this.handleOption.bind(this);
+		this.handleGet = this.handleGet.bind(this);
 	}
 
 
@@ -38,9 +38,24 @@ class Home extends Component {
 	componentDidMount() {
 		axios.get('https://api.ipify.org').then(resp => {
 			if (resp.data) {
-				this.setState({ip: resp.data})
+				this.setState({ip: resp.data})				
 			}			
+		}).then(() => {
+			this.handleGet()
 		})
+	}
+
+	handleGet() {
+		let formData = new FormData();
+		formData.append('ip', 'asd')
+		axios.post('/getParticipant', {'ip':this.state.ip}).then((data) => {
+			if (data.data.success === false) {
+				console.log(`FALSE`)
+			} else {
+				console.log(data.data)
+			}
+		})
+			.catch((e) => console.log(e))
 	}
 
 	handleChange(e) {

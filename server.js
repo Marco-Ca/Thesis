@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/addParticipant', (req, res) => {
-	const clientIp = requestIp.getClientIp(req); 
 	db.addParticipant(req.body.is_admin, req.body.ip, req.body.name, req.body.selectedOption.value, req.body.is_it, req.body.is_positive, req.body.password)
 		.then(function(result) {
 			console.log(`result is ${result}`)
@@ -33,6 +32,26 @@ app.post('/addParticipant', (req, res) => {
     }).catch(function (err) {
       console.log(err);
     });
+})
+
+app.post('/getParticipant', (req, res) => {
+	console.log(req.body)
+	db.getParticipant(req.body.ip).then((resp) => {
+		if (resp.rowCount != 0) {
+			// return resp.rows[0].name
+			res.json({
+				success: true,
+				name: resp.rows[0].name
+			})
+		} else {
+			res.json({
+				success: false				
+			})
+		}		
+	})
+	.catch((e) => {
+		console.log(`ERROR AT POST GET PARTICIPANT ${e}`)
+	})
 })
 
 app.post('/register', (req, res) => {
