@@ -94,3 +94,7 @@ div.loader {
   top: 0;
   left: 0;
 }
+
+.objectDetection {
+  text-align: center;
+}

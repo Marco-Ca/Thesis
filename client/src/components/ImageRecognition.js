@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import tiger from "./tiger.jpg";
-// Importing ml5.js as ml5
 import * as ml5 from "ml5";
+
+import Navigation from './Navigation'
 
 class ImageRecognition extends Component {
 	constructor() {
@@ -16,8 +17,6 @@ class ImageRecognition extends Component {
 }
 
   setPredictions = (pred) => {
-		// Set the prediction state with the model predictions
-		console.log(pred)
     this.setState({
       predictions: pred
     });
@@ -74,8 +73,6 @@ class ImageRecognition extends Component {
     if(this.state.predictions.length > 0){
       predictions = this.state.predictions.map((pred, i) => {
 				let { label, confidence } = pred;
-				console.log(pred.label)
-        // round the confidence with 2 decimal
         confidence = Math.floor(confidence * 10000) / 100 + "%";
         return (
           <div key={ i + "" }>{ i+1 }. Prediction: { label } at { confidence } </div>
@@ -84,13 +81,16 @@ class ImageRecognition extends Component {
     }
 	  
     return (
-      <div className="App">
+      <div>
+      <Navigation/>
+      <div className="App">      
 			<h1>Image Classification</h1>
 			<input className="fileInput" 
             type="file" 
             onChange={(e)=>this.changeImages(e)} />
       <img className="image" onClick={(e)=>this.changeImages(e)} src={ this.state.image_src } id="image" width="400" alt="" />
       { predictions }
+      </div>
       </div>
     );
   }

@@ -96,12 +96,15 @@ class Home extends Component {
 	}
 
 	render() {
-		return ( <Grid  container
+		return ( 
+      <div>
+        	<Navigation />
+    <Grid  container
 			direction="column"
 			justify="center"
 			alignItems="center" >
 			<div className = "login" >
-			<Navigation />
+		
 			<form onSubmit = {
 				this.onSubmit
 			} >
@@ -154,7 +157,7 @@ class Home extends Component {
 			</form> 
 			</div> 
 			</Grid>
-
+      </div>
 		);
 	}
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Navigation from './Navigation'
 
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import "@tensorflow/tfjs";
@@ -59,11 +60,11 @@ class ObjectDetection extends React.Component {
       const width = prediction.bbox[2];
       const height = prediction.bbox[3];
       // Draw the bounding box.
-      ctx.strokeStyle = "#00FFFF";
+      ctx.strokeStyle = "#4F054F";
       ctx.lineWidth = 4;
       ctx.strokeRect(x, y, width, height);
       // Draw the label background.
-      ctx.fillStyle = "#00FFFF";
+      ctx.fillStyle = "#4F054F";
       const textWidth = ctx.measureText(prediction.class).width;
       const textHeight = parseInt(font, 10); // base 10
       ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
@@ -79,8 +80,12 @@ class ObjectDetection extends React.Component {
   };
 
   render() {
-    return (
+    return (      
       <div>
+      <Navigation/>
+      <div className="objectDetection">        
+        <h1>Object Detection</h1>
+        <h6><em>Only works in Google Chrome</em></h6>
         <video
           className="size"
           autoPlay
@@ -96,6 +101,7 @@ class ObjectDetection extends React.Component {
           width="600"
           height="500"
         />
+      </div>
       </div>
     );
   }
