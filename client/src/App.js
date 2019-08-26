@@ -8,6 +8,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Home from './components/Home'
 import Error from './components/Error'
+import Result from './components/Result'
+import ImageRecognition from './components/ImageRecognition'
 
 class App extends Component {
   render() {
@@ -19,6 +21,8 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/home" component={Home} />
           <Route path="/logout" component={Login}/>
+          <Route path="/result" component={Result}/>
+          <Route path="/image_recognition" component={ImageRecognition}/>
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

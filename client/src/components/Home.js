@@ -22,8 +22,8 @@ class Home extends Component {
 			ip: "",
 			name: "",
 			selectedOption: null,
-			is_it: false,
-			is_positive: false,
+			is_it: "false",
+			is_positive: "false",
 			is_new: true,
 		}
 		this.setNewState = this.setNewState.bind(this);
@@ -31,6 +31,8 @@ class Home extends Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.handleOption = this.handleOption.bind(this);
 		this.handleGet = this.handleGet.bind(this);
+		this.handleOptionChange = this.handleOptionChange.bind(this);
+		this.handleAnswer = this.handleAnswer.bind(this);
 	}
 
 
@@ -46,13 +48,11 @@ class Home extends Component {
 	}
 
 	handleGet() {
-		let formData = new FormData();
-		formData.append('ip', 'asd')
 		axios.post('/getParticipant', {'ip':this.state.ip}).then((data) => {
 			if (data.data.success === false) {
 				console.log(`FALSE`)
 			} else {
-				console.log(data.data)
+				// window.location.replace('/result');
 			}
 		})
 			.catch((e) => console.log(e))
@@ -71,6 +71,14 @@ class Home extends Component {
 			axios.post('/addParticipant', {is_admin, ip, name, selectedOption, is_it, is_positive}).then(resp => {
 		  console.log(resp.data)
 		})
+	}
+
+	handleOptionChange(e) {
+		this.setState({is_it: e.target.value})
+	}
+
+	handleAnswer(e) {
+		this.setState({is_positive: e.target.value})
 	}
 
 	setNewState(if_admin) {
@@ -117,16 +125,32 @@ class Home extends Component {
 			}
 			/>
 			</label >
-			<label >
-			<input onChange = {
-				this.onChange
-			}
-			name = "password"
-			placeholder = "password"
-			type = "password" />
+			<label>
+			<input type="radio" value="true" 
+										checked={this.state.is_it === "true"} 
+										onChange={this.handleOptionChange} />
+				Yes
+			</label>
+			<label>
+			<input type="radio" value="false" 
+										checked={this.state.is_it === "false"} 
+										onChange={this.handleOptionChange} />
+				No
 			</label>
 			<br/>
-			<button onClick={this.handleClick}> Login </ button> 
+
+			<label>
+			<input type="radio" value="true" 										
+										onChange={this.handleAnswer} />
+				Yes I am excited!
+			</label>
+			<label>
+			<input type="radio" value="false" 
+											onChange={this.handleAnswer} />
+				No I am worried
+			</label>
+			<br/>
+			<button onClick={this.handleClick}> Submit </ button> 
 			</form> 
 			</div> 
 			</Grid>
