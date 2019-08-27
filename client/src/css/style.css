@@ -90,11 +90,17 @@ div.loader {
 }
 
 .size {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  top: 60%;
+	left: 50%;
+	margin-top: -250px;
+	margin-left: -300px;
 }
 
 .objectDetection {
   text-align: center;
+}
+
+#doughnut {
+	margin-top: 100px;
 }

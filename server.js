@@ -110,6 +110,13 @@ app.get('/home', (req, res) => {
   // }
 })
 
+app.get('/result', (req, res) => {
+	console.log(`getting`)
+	db.getResult().then(async function (data){
+		res.json(data.rows[0])
+	})
+})
+
 app.get('/logout', function (req, res) {
   req.session.userId = null;
   res.redirect("/");

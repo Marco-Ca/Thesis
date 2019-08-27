@@ -6,6 +6,12 @@ import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import "@tensorflow/tfjs";
 
 class ObjectDetection extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			stream: ""
+		}
+	}
   videoRef = React.createRef();
   canvasRef = React.createRef();
 
@@ -19,7 +25,10 @@ class ObjectDetection extends React.Component {
           }
         })
         .then(stream => {
-          window.stream = stream;
+					window.stream = stream;
+					this.setState({
+						stream: window.stream
+					});
           this.videoRef.current.srcObject = stream;
           return new Promise((resolve, reject) => {
             this.videoRef.current.onloadedmetadata = () => {
@@ -36,7 +45,12 @@ class ObjectDetection extends React.Component {
           console.error(error);
         });
     }
-  }
+	}
+	
+	componentWillUnmount() {
+		this.detectFrame = () => {}
+		this.state.stream.getTracks()[0].stop();
+	}
 
   detectFrame = (video, model) => {
     model.detect(video).then(predictions => {
@@ -74,7 +88,7 @@ class ObjectDetection extends React.Component {
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
       // Draw the text last to ensure it's on top.
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = "#fff";
       ctx.fillText(prediction.class, x, y);
     });
   };

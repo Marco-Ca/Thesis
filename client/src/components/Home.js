@@ -23,7 +23,7 @@ class Home extends Component {
 			name: "",
 			selectedOption: null,
 			is_it: "false",
-			is_positive: "false",
+			is_positive: "",
 			is_new: true,
 		}
 		this.setNewState = this.setNewState.bind(this);
@@ -143,12 +143,14 @@ class Home extends Component {
 			<br/>
 
 			<label>
-			<input type="radio" value="true" 										
+			<input type="radio" value="true" 					
+										checked={this.state.is_positive === "true"}					
 										onChange={this.handleAnswer} />
 				Yes I am excited!
 			</label>
 			<label>
 			<input type="radio" value="false" 
+											checked={this.state.is_positive === "false"}	
 											onChange={this.handleAnswer} />
 				No I am worried
 			</label>

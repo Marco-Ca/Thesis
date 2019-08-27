@@ -23,21 +23,15 @@ class ImageRecognition extends Component {
   }
 
   classifyImg = () => {
-    // Initialize the Image Classifier method with MobileNet
     const classifier = ml5.imageClassifier('MobileNet', modelLoaded);
-    // When the model is loaded
     function modelLoaded() {
       console.log('Model Loaded!');
     }
-    // Put the image to classify inside a variable
     const image = document.getElementById('image');
-    // Make a prediction with a selected image
     classifier.predict(image, 5, function(err, results) {
-    // Return the results
       return results;
     })
       .then((results) => {
-        // Set the predictions in the state
         this.setPredictions(results)
       })
 	}
@@ -57,19 +51,15 @@ class ImageRecognition extends Component {
 
 		reader.readAsDataURL(file)
 		this.classifyImg()
-
 	}
 
   componentDidMount(){
-    // once the component has mount, start the classification
     this.classifyImg();
   }
 
   render() {
-		// First set the predictions to a default value while loading
-		
+	
     let predictions = (<div className="loader"></div>);
-    // Map over the predictions and return each prediction with probability
     if(this.state.predictions.length > 0){
       predictions = this.state.predictions.map((pred, i) => {
 				let { label, confidence } = pred;

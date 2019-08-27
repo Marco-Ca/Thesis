@@ -24,8 +24,22 @@ function getParticipant(ip) {
 		`SELECT * FROM PARTICIPANT WHERE ip = $1`, [ip]
 	)
 }
+const getResult = () => {
+	return pg_client.query(
+		`SELECT COUNT (CASE WHEN (is_it = 'true' AND is_positive = 'true') 
+		then 'it_positive' END) AS it_positive, 
+		COUNT(CASE WHEN (is_it = 'true' AND is_positive = 'false') 
+		then 'it_negative' END) AS it_negative,
+		COUNT(CASE WHEN (is_it = 'false' AND is_positive = 'true') 
+		then 'nit_positive' END) AS nit_positive,
+		COUNT(CASE WHEN (is_it = 'false' AND is_positive = 'false') 
+		then 'nit_negative' END) AS nit_negative
+		FROM participant`
+	)
+}
 
 module.exports = {
   addParticipant,
-	getParticipant
+	getParticipant,
+	getResult
 };
