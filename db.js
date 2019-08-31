@@ -9,10 +9,16 @@ const pg_client = new pg.Client({
   idleTimeoutMillis: 60, // how long a client is allowed to remain idle before being closed
 });
 
-pg_client.connect();
+let connString = process.env.DATABASE_URL || 'postgres:postgres:postgres@localhost:5432/postgres';
+
+const pool = new pg.Pool({
+	connectionString : connString
+})
+
+// pg_client.connect();
 
 function addParticipant(admin, ip, name, country, is_it, is_positive) {
-  return pg_client.query(
+  return pool.query(
     `INSERT INTO participant (is_admin, ip, name, country, is_it, is_positive)
         VALUES ($1, $2, $3, $4, $5, $6);`,
         [admin, ip, name, country, is_it, is_positive]
@@ -20,12 +26,12 @@ function addParticipant(admin, ip, name, country, is_it, is_positive) {
 }
 
 function getParticipant(ip) {
-	return pg_client.query(
+	return pool.query(
 		`SELECT * FROM PARTICIPANT WHERE ip = $1`, [ip]
 	)
 }
 const getResult = () => {
-	return pg_client.query(
+	return pool.query(
 		`SELECT COUNT (CASE WHEN (is_it = 'true' AND is_positive = 'true') 
 		then 'it_positive' END) AS it_positive, 
 		COUNT(CASE WHEN (is_it = 'true' AND is_positive = 'false') 
