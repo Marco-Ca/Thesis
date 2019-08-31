@@ -3,9 +3,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
-const pg = require('pg');
 const db = require('./db')
-const requestIp = require('request-ip');
+const path = require('path');
 
 app.use(cookieSession({
   secret: `secret is secret`,
@@ -21,7 +20,6 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 app.get('/', (req, res) => {
-  console.log(`HELLO`)
   res.send(`HELLO WORLD`)
 })
 
@@ -40,7 +38,6 @@ app.post('/addParticipant', (req, res) => {
 })
 
 app.post('/getParticipant', (req, res) => {
-	console.log(req.body)
 	db.getParticipant(req.body.ip).then((resp) => {
 		if (resp.rowCount != 0) {
 			// return resp.rows[0].name
