@@ -36,7 +36,7 @@ class Result extends Component {
   }
 
   componentDidMount() {
-   axios.get('/result').then((data) => {
+   axios.get('/results').then((data) => {
 		var countArr = []
 
 		for (let count in data.data) {

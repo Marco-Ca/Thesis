@@ -67,7 +67,7 @@ app.get('/home', (req, res) => {
   // }
 })
 
-app.get('/result', (req, res) => {
+app.get('/results', (req, res) => {
 	console.log(`getting`)
 	db.getResult().then(async function (data){
 		res.json(data.rows[0])
