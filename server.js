@@ -15,6 +15,11 @@ app.use(cookieSession({
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+if(process.env.NODE_ENV === 'production') {
+  console.log(`on production`)
+  app.use(express.static('client/build'));
+}
+
 app.get('/', (req, res) => {
   console.log(`HELLO`)
   res.send(`HELLO WORLD`)
