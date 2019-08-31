@@ -67,7 +67,6 @@ class Home extends Component {
 	handleClick(e) {
 		e.preventDefault()
 		const { is_admin, ip, name, selectedOption, is_it, is_positive} = this.state;
-		console.log(is_admin, ip, name, selectedOption, is_it, is_positive)
 			axios.post('/addParticipant', {is_admin, ip, name, selectedOption, is_it, is_positive}).then(resp => {
 		  console.log(resp.data)
 		})
@@ -155,7 +154,7 @@ class Home extends Component {
 			</label>
 			<br/>
       <br/>
-			<button onClick={this.handleClick}> Submit </ button> 
+			<button id="submitBtn" onClick={this.handleClick}> Submit </ button> 
 			</form> 
 			</div> 
 			</div>

@@ -16,6 +16,10 @@ class ObjectDetection extends React.Component {
   canvasRef = React.createRef();
 
   componentDidMount() {
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+      console.log("This browser does not support the API yet");
+    }
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       const webCamPromise = navigator.mediaDevices
         .getUserMedia({
@@ -35,6 +39,10 @@ class ObjectDetection extends React.Component {
               resolve();
             };
           });
+        })
+        .catch((e) => {
+          this.detectFrame = () => {};
+          return
         });
       const modelPromise = cocoSsd.load();
       Promise.all([modelPromise, webCamPromise])
