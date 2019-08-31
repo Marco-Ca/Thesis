@@ -99,18 +99,15 @@ class Home extends Component {
 		return ( 
       <div>
         	<Navigation />
-    <Grid  container
-			direction="column"
-			justify="center"
-			alignItems="center" >
-			<div className = "login" >
+    <div  className="container">		
+			<div className = "formInput">
 		
 			<form onSubmit = {
 				this.onSubmit
 			} >
 			<label >
 			NAME: < br />
-			<input onChange = {
+			<input className="css-2b097c-container" onChange = {
 				this.handleChange
 			}
 			name = "name" />
@@ -128,21 +125,23 @@ class Home extends Component {
 			}
 			/>
 			</label >
+      
+      <div className="question"> Do you consider yourself as an IT professional?</div>
 			<label>
 			<input type="radio" value="true" 
 										checked={this.state.is_it === "true"} 
 										onChange={this.handleOptionChange} />
 				Yes
 			</label>
-			<label>
+			<label>        
 			<input type="radio" value="false" 
 										checked={this.state.is_it === "false"} 
 										onChange={this.handleOptionChange} />
 				No
 			</label>
 			<br/>
-
-			<label>
+      <div className="question"> Are you excited about your future with <br/> Machine Learning / Artificial Intelligence?</div>
+			<label>        
 			<input type="radio" value="true" 					
 										checked={this.state.is_positive === "true"}					
 										onChange={this.handleAnswer} />
@@ -155,10 +154,11 @@ class Home extends Component {
 				No I am worried
 			</label>
 			<br/>
+      <br/>
 			<button onClick={this.handleClick}> Submit </ button> 
 			</form> 
 			</div> 
-			</Grid>
+			</div>
       </div>
 		);
 	}

@@ -48,8 +48,8 @@ class ObjectDetection extends React.Component {
 	}
 	
 	componentWillUnmount() {
-		this.detectFrame = () => {}
-		this.state.stream.getTracks()[0].stop();
+    this.detectFrame = () => {}
+    if (this.state.stream) this.state.stream.getTracks()[0].stop();
 	}
 
   detectFrame = (video, model) => {

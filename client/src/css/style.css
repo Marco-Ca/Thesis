@@ -1,24 +1,69 @@
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono|Lekton|Share+Tech+Mono|VT323&display=swap');
+
+
+
+/* font-family: 'Share Tech Mono', monospace;
+font-family: 'VT323', monospace;
+font-family: 'Lekton', sans-serif;
+font-family: 'Cutive Mono', monospace; */
+
+
+
 * {
-  font-family: 'Poiret One', cursive;
+  font-family: 'Cutive Mono', monospace;
   color: black;
   font-weight: 600;
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7em;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.formInput {
+  display: flex;
+  border: 1px solid black;
+  height: 350px;
+  width: 500px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.question {
+  margin: 15px 0;
+}
+
+.css-2b097c-container {
+  width: 250px;
+  margin-bottom: 15px;
+
 }
 
 .link:hover {
   color: black;
   text-decoration: underline;
-  font-size: 1.5em;
   transition-duration: 0.1s;
+  font-weight: 900;
   /* font-family: Arial; */
+}
+
+.navigation {
+  position: fixed;
+  right: 5em;
+  left: 5em;
+  top: 1.2em;
 }
 
 .link {
   margin-top: 20px;
   text-decoration: none;
   height: 100%;
-  font-family: 'Poiret One', cursive;
   font-weight: 900;
   color: black;
 }
