@@ -52,7 +52,7 @@ class Home extends Component {
 			if (data.data.success === false) {
 				console.log(`FALSE`)
 			} else {
-				window.location.replace('/result');
+				// window.location.replace('/result');
 			}
 		})
 			.catch((e) => console.log(e))

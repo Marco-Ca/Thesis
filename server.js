@@ -58,15 +58,6 @@ app.post('/getParticipant', (req, res) => {
 	})
 })
 
-app.get('/home', (req, res) => {
-  console.log(req.session)
-  // if (req.session.userId) {
-  //   res.json({ success: true, is_admin: req.session.is_admin })
-  // } else {
-  //   res.json({ success: false })
-  // }
-})
-
 app.get('/results', (req, res) => {
 	console.log(`getting`)
 	db.getResult().then(async function (data){
