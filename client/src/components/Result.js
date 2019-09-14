@@ -29,7 +29,8 @@ class Result extends Component {
 				animation: {
 					animateScale: true
 				},
-				rotation: 3
+        rotation: 3,
+        aspectRatio: 2
 			},
     };
    
